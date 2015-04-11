@@ -95,20 +95,39 @@ body {
 
 .houses {
    position: absolute;
-   background-color: #cdcdcd;
+   //background-color: #cdcdcd;
    width: 570px;
-   height:110px;
-   left:120px;
+   height:57px;
+   left:130px;
+   top:47px;
+}
+
+.houses.player1 {
+   top:126px;
+}
+.house {
+   position: absolute;
+   background-color: #444444;
+   width:55px;
+   height:55px;
+   //top:44px;
+}
+
+.house.two{
+   left:300px;
 }
 
 .storehouse {
    position: absolute;
-   background-color: #333333;
-   width:100px;
-   height:100px;
-   top:61px;
+   width:80px;
+   height:80px;
+   top:70px;
 }
 
-.house {
-   position
+.storehouse.player2{
+   left:705px;
+}
+
+.storehouse.player1{
+   left:20px;
 }
