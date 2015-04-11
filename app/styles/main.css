@@ -95,7 +95,6 @@ body {
 
 .houses {
    position: absolute;
-   //background-color: #cdcdcd;
    width: 570px;
    height:57px;
    left:130px;
@@ -107,14 +106,32 @@ body {
 }
 .house {
    position: absolute;
-   background-color: #444444;
    width:55px;
    height:55px;
-   //top:44px;
 }
 
 .house.two{
-   left:300px;
+   left:80px;
+}
+
+.house.three{
+   left:165px;
+}
+
+.house.four{
+   left:250px;
+}
+
+.house.five{
+   left:330px;
+}
+
+.house.six{
+   left:410px;
+}
+
+.house.seven{
+   left:495px;
 }
 
 .storehouse {
@@ -130,4 +147,10 @@ body {
 
 .storehouse.player1{
    left:20px;
+}
+
+.ball {
+   position:absolute;
+   left:0;
+   right:0;
 }

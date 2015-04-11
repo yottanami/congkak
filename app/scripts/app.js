@@ -24,7 +24,6 @@ angular
         controller: 'AboutCtrl'
       })
       .when('/play',{
-
         templateUrl: 'views/play.html',
         controller: 'PlayCtrl'
       })
