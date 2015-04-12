@@ -104,6 +104,7 @@ body {
 .houses.player1 {
    top:126px;
 }
+
 .house {
    position: absolute;
    width:55px;
@@ -133,6 +134,38 @@ body {
 .house.seven{
    left:495px;
 }
+
+.house.eight{
+}
+
+.house.nine{
+   left:80px;
+}
+
+.house.ten{
+   left:165px;
+}
+
+.house.eleven{
+   left:250px;
+}
+
+.house.twelve{
+   left:330px;
+}
+
+.house.thirteen{
+   left:410px;
+}
+
+.house.thirteen
+   left:495px;
+}
+
+.house.fourteen
+   left:495px;
+}
+
 
 .storehouse {
    position: absolute;

@@ -1,3 +1,8 @@
-<div class="{{numbers[id_number]}} house">
-  <img class="ball" src="/images/ball.png" ng-repeat="t in getTimes(capacity) track by $index" style="left:{{getRandomInt(-3,38)}}px;top:{{getRandomInt(-3,38)}}px">
+<div
+  class="{{numbers[id_number]}} house"
+  ng-click="$broadcast('distribute', [id_number,capacity])">
+  <img
+  class="ball" src="/images/ball.png"
+  ng-repeat="t in getTimes(capacity) track by $index"
+  style="left:{{getRandomInt(-3,38)}}px;top:{{getRandomInt(-3,38)}}px">
 </div>
