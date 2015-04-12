@@ -40,7 +40,6 @@ angular.module('congkakApp')
           if ($scope.player1Turn){
             console.log($('.houses.player2 > .house.' + numbers[div+1] + ' .ball').toArray());
             var balls = $('.houses.player2 > .house.' + numbers[div+1] + ' .ball').toArray();
-
           }
       };
 
