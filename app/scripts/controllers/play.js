@@ -37,11 +37,13 @@ angular.module('congkakApp')
       };
 
       $scope.distribute = function(div){
-          if ($scope.player1_turn){
-              console.log($('.houses.player2 > .house.' + div + ' .ball').toArray());
+          if ($scope.player1Turn){
+            console.log($('.houses.player2 > .house.' + numbers[div+1] + ' .ball').toArray());
+            var balls = $('.houses.player2 > .house.' + numbers[div+1] + ' .ball').toArray();
+
           }
       };
 
       $scope.initializeGame();
-      $scope.player1_turn = true;
+      $scope.player1Turn = true;
   });
