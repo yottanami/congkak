@@ -48,6 +48,9 @@ angular.module('congkakApp')
                 scope.$on('distribute', function(event, args){
                     console.log(args);
                 });
+                scope.trigleEvent = function (){
+                   $broadcast('distribute', id_number, capacity);
+                };
 
             }
         };

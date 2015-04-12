@@ -1,6 +1,6 @@
 <div
   class="{{numbers[id_number]}} house"
-  ng-click="$broadcast('distribute', [id_number,capacity])">
+  ng-click="trigleEvent">
   <img
   class="ball" src="/images/ball.png"
   ng-repeat="t in getTimes(capacity) track by $index"
