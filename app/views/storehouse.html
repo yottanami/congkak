@@ -1,0 +1,9 @@
+<div
+  class="player{{id_number}} storehouse">
+  <img
+  class="ball" src="/images/ball.png"
+  ng-repeat="t in getTimes(capacity) track by $index"
+  style="left:{{getRandomInt(-3,38)}}px;top:{{getRandomInt(-3,38)}}px">
+  <br>
+  <div>{{capacity}}</div>
+</div>
