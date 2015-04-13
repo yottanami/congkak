@@ -9,10 +9,14 @@
 angular.module('congkakApp')
   .directive('storeHouse', function () {
     return {
-      template: '<div></div>',
+      template: 'views/storehouse.html',
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
-        element.text('this is the storeHouse directive');
+      replace: 'true',
+      scope: {
+          id_number: '@idNumber'
+      }
+      link: function (scope, element, attrs) {
+          scope.capacity = 0;
       }
     };
   });

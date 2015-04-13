@@ -66,7 +66,7 @@ angular.module('congkakApp')
                     //if (args.idnumber == 1){
                      //   args.idnumber = 15;
                      //   console.log("##############################");
-                    //}
+                    //}\
                     if ((scope.id_number == args.idnumber - 1)){
                         if (args.hand > 1){
                             scope.capacity = scope.capacity + 1;
