@@ -7,7 +7,7 @@
  * # house
  */
 angular.module('congkakApp')
-    .directive('house', function () {
+    .directive('house', function ($rootScope) {
         return {
             templateUrl: 'views/house.html',
             restrict: 'E',
@@ -15,7 +15,7 @@ angular.module('congkakApp')
             scope: {
                 id_number: '@idNumber'
             },
-            link: function (scope, element, attrs) {
+            link: function (scope, element, attrs ) {
                 scope.numbers = [
                     'zero',
                     'one',
@@ -34,7 +34,8 @@ angular.module('congkakApp')
                     'fourteen'
                 ];
                 scope.random_position =30;
-                scope.capacity = 7;
+                scope.capacity = scope.capacity || 7;
+
                 /*
                  scope.getRandomInt = function(min, max) {
                  min = min * 10;
@@ -45,13 +46,31 @@ angular.module('congkakApp')
                 scope.getTimes = function(n){
                     return new Array(n);
                 };
-                scope.$on('distribute', function(event, args){
-                    console.log(args);
-                });
-                scope.trigleEvent = function (){
-                   $broadcast('distribute', id_number, capacity);
+                scope.trigleClick = function(){
+                    if (($rootScope.playerTurn == 1) && (scope.id_number < 15) && (scope.id_number > 7)){
+                        //console.log('out');
+                        //console.log(scope.id_number);
+                        //console.log(scope.capacity);
+                        //console.log('/out');
+                        $rootScope.$broadcast('distribute', {idnumber: scope.id_number, hand: scope.capacity});
+                        scope.capacity = 0;
+                    }else if($rootScope.playerTurn == 2 && args.idnumber < 8 && args.idnumber > 0 && args.capacity < 0){
+
+                    }
                 };
 
+                scope.trigleDistribute = function(hand){
+                    $rootScope.$broadcast('distribute', {idnumber: scope.id_number, hand: hand});
+                };
+                $rootScope.$on('distribute', function(event, args){
+                    if ((scope.id_number == args.idnumber - 1) && (args.hand>0)){
+                        scope.capacity = scope.capacity + 1;
+                        console.log('current capacity' + scope.capacity);
+                        console.log('id_number = ' + scope.id_number);
+                        console.log('hand = ' + args.hand);
+                        scope.trigleDistribute(args.hand-1);
+                    }
+                });
             }
         };
     });

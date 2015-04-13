@@ -8,11 +8,11 @@
  * Controller of the congkakApp
  */
 angular.module('congkakApp')
-  .controller('PlayCtrl', function ($scope) {
+  .controller('PlayCtrl', function ($scope, $rootScope) {
 
       $scope.initializeGame = function(){
-
+          $rootScope.playerTurn = 1;
       };
       $scope.initializeGame();
-      $scope.player1Turn = true;
+
   });

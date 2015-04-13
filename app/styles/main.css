@@ -111,12 +111,18 @@ body {
    height:55px;
 }
 
+.house.one{
+   left:495px;
+}
+
 .house.two{
-   left:80px;
+   left:410px;
+
 }
 
 .house.three{
-   left:165px;
+   left:330px;
+
 }
 
 .house.four{
@@ -124,15 +130,15 @@ body {
 }
 
 .house.five{
-   left:330px;
+   left:165px;
 }
 
 .house.six{
-   left:410px;
+   left:80px;
 }
 
 .house.seven{
-   left:495px;
+
 }
 
 .house.eight{
@@ -156,10 +162,6 @@ body {
 
 .house.thirteen{
    left:410px;
-}
-
-.house.thirteen{
-   left:495px;
 }
 
 .house.fourteen{
