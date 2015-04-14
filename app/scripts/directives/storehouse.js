@@ -19,7 +19,7 @@ angular.module('congkakApp')
           scope.capacity = scope.capacity || 0;
           $rootScope.$on('houseDistribute', function(event, args){
               if (args.user == scope.id_number)
-                  scope.capacity = scope.capacity + 1;
+                  scope.capacity = scope.capacity + args.items;
           });
       }
     };
