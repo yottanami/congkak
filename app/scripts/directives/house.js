@@ -48,7 +48,19 @@ angular.module('congkakApp')
                 };
                 scope.trigleClick = function(){
                     if (($rootScope.playerTurn == 1) && (scope.id_number < 15) && (scope.id_number > 7) && (scope.capacity > 0)){
-                        $rootScope.$broadcast('distribute', {idnumber: scope.id_number, hand: scope.capacity});
+                        var hand = scope.capacity;
+                     if ((scope.id_number == 8)){
+                                $rootScope.$broadcast('houseDistribute', {user: 1, items: 1});
+                                hand = hand - 1;
+
+                         scope.trigleDistribute(hand);
+
+                                //$rootScope.$broadcast('distribute', {idnumber: scope.id_number, hand: hand});
+                            }else{
+                                scope.trigleDistribute(hand);
+                            }
+
+                        //$rootScope.$broadcast('distribute', {idnumber: scope.id_number, hand: scope.capacity});
                         scope.capacity = 0;
                     }else if($rootScope.playerTurn == 2 && scope.idnumber < 8 && scope.idnumber > 0 && scope.capacity > 0){
 
@@ -64,28 +76,35 @@ angular.module('congkakApp')
                     var idnumber = args.idnumber;
                     if (idnumber == 1){
                         idnumber = 15;
-                        console.log("----------------" + hand);
+                        console.log("-------end line---------" + hand);
                     }
 
-                    if ((idnumber == 8) && (scope.id_number == 8) && (hand > 0)){
-
-                            $rootScope.$broadcast('houseDistribute', {user: 1, items: 1});
-                            hand = hand - 1;
-                            if (hand == 0){
-                                // message to user can select another one
-                            }
-                    }
 
                     if ((scope.id_number == idnumber - 1)){
+                        console.log(" avale shart"+hand);
                         if (hand > 1){
-                            scope.capacity = scope.capacity + 1;
                             hand = hand - 1;
+                            console.log("** out of timeout " + hand);
+                            scope.capacity = scope.capacity + 1;
                         $timeout(function(){
-                            console.log("------NOW------");
-                            scope.trigleDistribute(hand);
-                            }, 4000);
-                        }else if (hand == 1){
+                            console.log("before trigle" + hand);
+                            if ((idnumber == 9) && (hand > 0) && (scope.id_number = 8)){
+                                $rootScope.$broadcast('houseDistribute', {user: 1, items: 1});
+                                hand = hand - 1;
+                                if (hand == 0){
+                                    // message to user can select another one
+                                }else{
+                                    scope.trigleDistribute(hand);
+                                }
+                                console.log("daaakheelee householde"+hand);
+                            }else{
+                                scope.trigleDistribute(hand);
+                            }
+                            console.log("after trigle" + hand);
+                            }, 50);
+                        }else if ((hand == 1)) {
                             if( scope.capacity > 0){
+                                console.log('1 item in hand');
                                 scope.trigleDistribute(scope.capacity + hand);
                                 scope.capacity = 0;
                             }else{
@@ -97,7 +116,8 @@ angular.module('congkakApp')
                                 }
                             }
                         }
-                    }
+
+}
                 });
             }
         };
