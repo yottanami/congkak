@@ -49,27 +49,48 @@ angular.module('congkakApp')
                 scope.trigleClick = function(){
                     if (($rootScope.playerTurn == 1) && (scope.id_number < 15) && (scope.id_number > 7) && (scope.capacity > 0)){
                         var hand = scope.capacity;
-                     if ((scope.id_number == 8)){
-                                $rootScope.$broadcast('houseDistribute', {user: 1, items: 1});
-                                hand = hand - 1;
+                        if ((scope.id_number == 8)){
+                            $rootScope.$broadcast('houseDistribute', {user: 1, items: 1});
+                            hand = hand - 1;
+                            scope.trigleDistribute(hand);
 
-                         scope.trigleDistribute(hand);
-
-                                //$rootScope.$broadcast('distribute', {idnumber: scope.id_number, hand: hand});
-                            }else{
-                                scope.trigleDistribute(hand);
-                            }
+                            //$rootScope.$broadcast('distribute', {idnumber: scope.id_number, hand: hand});
+                        }else{
+                            scope.trigleDistribute(hand);
+                        }
 
                         //$rootScope.$broadcast('distribute', {idnumber: scope.id_number, hand: scope.capacity});
                         scope.capacity = 0;
                     }else if($rootScope.playerTurn == 2 && scope.idnumber < 8 && scope.idnumber > 0 && scope.capacity > 0){
-
+                        var hand = scope.capacity;
+                        if ((scope.id_number == 1)){
+                            $rootScope.$broadcast('houseDistribute', {user: 2, items: 1});
+                            hand = hand - 1;
+                            scope.trigleDistribute(hand);
+                            //$rootScope.$broadcast('distribute', {idnumber: scope.id_number, hand: hand});
+                        }else{
+                            scope.trigleDistribute(hand);
+                        }
+                        //$rootScope.$broadcast('distribute', {idnumber: scope.id_number, hand: scope.capacity});
+                        scope.capacity = 0;
                     }
                 };
 
                 scope.trigleDistribute = function(hand){
                     $rootScope.$broadcast('distribute', {idnumber: scope.id_number, hand: hand});
                 };
+
+                $rootScope.$on('eatDistribute', function(event, args){
+                    if (scope.id_number == args.eaten_house){
+                        console.log("IN EAAAAAAAAAAT");
+                        console.log("Eaten House :" + args.eaten_house);
+                        console.log("CAPACITY" + scope.capacity);
+                        console.log("IN EAAAAAAAAAAT");
+                        $rootScope.$broadcast('houseDistribute', {user: 1, items: scope.capacity + 1});
+                        scope.capacity = 0;
+                        alert("You can select another one");
+                    }
+                });
 
                 $rootScope.$on('distribute', function(event, args){
                     var hand = args.hand;
@@ -86,22 +107,22 @@ angular.module('congkakApp')
                             hand = hand - 1;
                             console.log("** out of timeout " + hand);
                             scope.capacity = scope.capacity + 1;
-                        $timeout(function(){
-                            console.log("before trigle" + hand);
-                            if ((idnumber == 9) && (hand > 0) && (scope.id_number = 8)){
-                                $rootScope.$broadcast('houseDistribute', {user: 1, items: 1});
-                                hand = hand - 1;
-                                if (hand == 0){
-                                    // message to user can select another one
+                            $timeout(function(){
+                                console.log("before trigle" + hand);
+                                if ((idnumber == 9) && (hand > 0) && (scope.id_number = 8)){
+                                    $rootScope.$broadcast('houseDistribute', {user: 1, items: 1});
+                                    hand = hand - 1;
+                                    if (hand == 0){
+                                        alert("You can select another one");
+                                    }else{
+                                        scope.trigleDistribute(hand);
+                                    }
+                                    console.log("daaakheelee householde"+hand);
                                 }else{
                                     scope.trigleDistribute(hand);
                                 }
-                                console.log("daaakheelee householde"+hand);
-                            }else{
-                                scope.trigleDistribute(hand);
-                            }
-                            console.log("after trigle" + hand);
-                            }, 50);
+                                console.log("after trigle" + hand);
+                            }, 100);
                         }else if ((hand == 1)) {
                             if( scope.capacity > 0){
                                 console.log('1 item in hand');
@@ -110,14 +131,18 @@ angular.module('congkakApp')
                             }else{
                                 if (($rootScope.playerTurn == 1) && (scope.id_number < 15) && (scope.id_number > 7)){
                                     // if it is on your board houses you can eat the items at the opposite side
-
+                                    var eaten_house = 15 - scope.id_number;
+                                    $rootScope.$broadcast('eatDistribute', {user: 1, eaten_house: eaten_house});
+                                    hand = 0;
                                 }else{
                                     // if it is on opponent`s board houses that is empty your turn ends
+                                    alert("Second members time");
+                                    $rootScope.playerTurn = 2;
                                 }
                             }
                         }
 
-}
+                    }
                 });
             }
         };
