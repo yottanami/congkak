@@ -54,38 +54,39 @@ angular.module('congkakApp')
                     for (var i=1; i<8; i++){
                         if ($rootScope.boardStatus[i] !== 0){
                             tmp = true;
-                            console.log("boardstatus["+ i+"] is " + $rootScope.boardStatus[i]);
+                            //console.log("boardstatus["+ i+"] is " + $rootScope.boardStatus[i]);
                         }
                     }
                     if (tmp === false){
                         $rootScope.playerTurn = 0;
                         alert ('Player 2 won!!');
                     }else{
-                        console.log("1-7 WINNNNNI UPLOADDDDD");
-                        console.dir($rootScope.boardStatus);
+                        //console.log("1-7 WINNNNNI UPLOADDDDD");
+                        //console.dir($rootScope.boardStatus);
                     }
 
                     tmp = false;
                     for (var j=8; j<15; j++){
                         if ($rootScope.boardStatus[j] !== 0){
                             tmp = true;
-                            console.log("boardstatus["+ j+"] is " + $rootScope.boardStatus[j]);
-                            console.log("TypeOf $rootScope.boardStatus[i] = " + typeof($rootScope.boardStatus[j]));
+                            //console.log("boardstatus["+ j+"] is " + $rootScope.boardStatus[j]);
+                            //console.log("TypeOf $rootScope.boardStatus[i] = " + typeof($rootScope.boardStatus[j]));
                         }
                     }
                     if (tmp === false){
                         $rootScope.playerTurn = 0;
                         alert ('Player 1 won!!');
                     }else{
-                        console.log("8-14WINNNNNI UPLOADDDDD");
-                        console.dir($rootScope.boardStatus);
+                        //console.log("8-14WINNNNNI UPLOADDDDD");
+                        //console.dir($rootScope.boardStatus);
                     }
                 };
 
 
 
                 scope.trigleClick = function(){
-                    if (($rootScope.playerTurn == 1) && (scope.id_number < 15) && (scope.id_number > 7) && (scope.state > 0)){
+                    if (($rootScope.playerTurn == 1) && (scope.id_number < 15) && (scope.id_number > 7) && (scope.state > 0) && ($rootScope.gameLock == false)){
+                        $rootScope.gameLock = true;
                         var hand = scope.state;
                         if ((scope.id_number == 8)){
                             $rootScope.$broadcast('houseDistribute', {user: 1, items: 1});
@@ -101,7 +102,8 @@ angular.module('congkakApp')
                         scope.state = 0;
                         $rootScope.boardStatus[parseInt(scope.id_number)] = 0;
                         scope.checkWinner();
-                    }else if(($rootScope.playerTurn == 2) && (scope.id_number < 8) && (scope.id_number > 0) && (scope.state > 0)){
+                    }else if(($rootScope.playerTurn == 2) && (scope.id_number < 8) && (scope.id_number > 0) && (scope.state > 0) && ($rootScope.gameLock == false)){
+                        $rootScope.gameLock = true;
                         var hand = scope.state;
                         if ((scope.id_number == 1)){
                             $rootScope.$broadcast('houseDistribute', {user: 2, items: 1});
@@ -120,6 +122,7 @@ angular.module('congkakApp')
 
                 scope.trigleDistribute = function(hand){
                     $rootScope.$broadcast('distribute', {idnumber: scope.id_number, hand: hand});
+                    scope.checkWinner();
                 };
 
                 $rootScope.$on('eatDistribute', function(event, args){
@@ -131,7 +134,8 @@ angular.module('congkakApp')
                         $rootScope.$broadcast('houseDistribute', {user: $rootScope.playerTurn, items: scope.state + 1});
                         scope.state = 0;
                         $rootScope.boardStatus[parseInt(scope.id_number)] = 0;
-                                            scope.checkWinner();
+                        scope.checkWinner();
+                        $rootScope.gameLock = false;
                         alert("You can select another one");
                     }
                 });
@@ -159,6 +163,7 @@ angular.module('congkakApp')
                                     $rootScope.$broadcast('houseDistribute', {user: 1, items: 1});
                                     hand = hand - 1;
                                     if (hand == 0){
+                                        $rootScope.gameLock = false;
                                         alert("You can select another one");
                                     }else{
                                         scope.trigleDistribute(hand);
@@ -170,6 +175,7 @@ angular.module('congkakApp')
                                     hand = hand - 1;
 
                                     if (hand == 0){
+                                        $rootScope.gameLock = false;
                                         alert("You can select another one");
                                     }else{
                                         scope.trigleDistribute(hand);
@@ -178,7 +184,7 @@ angular.module('congkakApp')
                                     scope.trigleDistribute(hand);
                                 }
                                 //console.log("after trigle" + hand);
-                            }, 40);
+                            }, 1000);
                         }else if ((hand == 1)) {
                             if( scope.state > 0){
                                 //console.log('1 item in hand');
@@ -207,6 +213,7 @@ angular.module('congkakApp')
                                     }else if ($rootScope.playerTurn == 2){
                                         $rootScope.playerTurn = 1;
                                     }
+                                    $rootScope.gameLock = false;
                                     alert("Player " + $rootScope.playerTurn + " play time !");
                                 }
                             }
