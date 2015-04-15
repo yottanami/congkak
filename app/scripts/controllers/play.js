@@ -12,6 +12,7 @@ angular.module('congkakApp')
 
       $scope.initializeGame = function(){
           $rootScope.playerTurn = 1;
+          $rootScope.boardStatus = [-1,7,7,7,7,7,7,7,7,7,7,7,7,7,7]
       };
       $scope.initializeGame();
 

@@ -1,10 +1,10 @@
 <div
   class="{{numbers[id_number]}} house"
-  ng-click="trigleClick(id_number, capacity)">
+  ng-click="trigleClick(id_number, state)">
   <img
   class="ball" src="/images/ball.png"
-  ng-repeat="t in getTimes(capacity) track by $index"
+  ng-repeat="t in getTimes(state) track by $index"
   style="left:{{getRandomInt(-3,38)}}px;top:{{getRandomInt(-3,38)}}px">
   <br>
-  <div>{{capacity}}</div>
+  <div>{{state}}</div>
 </div>

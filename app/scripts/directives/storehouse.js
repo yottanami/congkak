@@ -16,10 +16,10 @@ angular.module('congkakApp')
           id_number: '@idNumber'
       },
       link: function (scope, element, attrs) {
-          scope.capacity = scope.capacity || 0;
+          scope.state = scope.state || 0;
           $rootScope.$on('houseDistribute', function(event, args){
               if (args.user == scope.id_number)
-                  scope.capacity = scope.capacity + args.items;
+                  scope.state = scope.state + args.items;
           });
       }
     };
