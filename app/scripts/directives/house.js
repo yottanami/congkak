@@ -48,6 +48,7 @@ angular.module('congkakApp')
                 };
 
 
+
                 scope.checkWinner = function(){
 
                     var tmp = false;
