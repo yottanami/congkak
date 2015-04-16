@@ -116,12 +116,12 @@ body {
 }
 
 .house.two{
-   left:410px;
+   left:416px;
 
 }
 
 .house.three{
-   left:330px;
+   left:334px;
 
 }
 
@@ -138,10 +138,11 @@ body {
 }
 
 .house.seven{
-
+   left: 2px;
 }
 
 .house.eight{
+   left: 2px;
 }
 
 .house.nine{
@@ -161,7 +162,7 @@ body {
 }
 
 .house.thirteen{
-   left:410px;
+   left:416px;
 }
 
 .house.fourteen{
@@ -184,8 +185,64 @@ body {
    left:20px;
 }
 
-.ball {
+.house.ball {
    position:absolute;
    left:0;
    right:0;
+}
+
+.house.ball.one {
+   left:13px;
+   top:20px;
+}
+
+
+.house.ball.two {
+   left:40px;
+   top:25px;
+}
+
+.house.ball.three {
+   left:31px;
+   top:0px;
+}
+
+.house.ball.four {
+   left:20px;
+   top:44px;
+}
+
+.house > .ball.five {
+   left:-6px;
+   top:32px;
+}
+
+.house >.ball.six {
+   left:-11px;
+   top:7px;
+}
+
+.house > .ball.seven {
+   left: 9px;
+   top: -7px;
+}
+
+.house > .ball.eight {
+   left:16px;
+   top:10px;
+}
+
+.house > .ball.nine {
+   left:21px;
+   top:13px;
+}
+
+.house > .ball.ten {
+   left:20px;
+   top:18px;
+}
+
+.house > .ball.eleven {
+   left:22px;
+   top:30px;
 }
