@@ -25,6 +25,7 @@ angular.module('congkakApp')
           $rootScope.playerTurn = 1;
           $rootScope.boardStatus = [-1,7,7,7,7,7,7,7,7,7,7,7,7,7,7];
           $rootScope.gameLock = false;
+          $rootScope.storeHousesState = [0,0];
           $('#animation_ball').hide();
       };
       $scope.initializeGame();

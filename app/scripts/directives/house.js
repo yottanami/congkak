@@ -35,7 +35,7 @@ angular.module('congkakApp')
                 ];
                 scope.random_position =30;
                 scope.state = scope.state || 7;
-
+                scope.blockHouses = [];
                 /*
                  scope.getRandomInt = function(min, max) {
                  min = min * 10;
@@ -48,6 +48,31 @@ angular.module('congkakApp')
                 };
 
 
+                scope.startSecondRound = function(winner){
+
+                    var firstPlayerMaxHouses = parseInt($rootScope.storeHousesState[1]/7);
+                    var secondPlayerMaxHouses = parseInt($rootScope.storeHousesState[2]/7);
+                    console.log('firstmaxHouses of '+ winner + ' ' + firstPlayerMaxHouses);
+                    console.log('secondmaxHouses of '+ winner + ' ' + secondPlayerMaxHouses);
+
+                    //if (winner == 1){
+                        for(var i=1;i<8;i++){
+                            if ( i > secondPlayerMaxHouses){
+                                scope.blockHouses.push(i);
+                                console.log("pushed" + i);
+                            }
+                        }
+                    //}else{
+                        for(var i=8;i<15;i++){
+                            if ( i-7 > firstPlayerMaxHouses){
+                                console.log("pushed" + 1);
+                                scope.blockHouses.push(i);
+                            }
+                        }
+                    //}
+                    console.log(winner);
+                    console.dir(scope.blockHouses);
+                };
 
                 scope.checkWinner = function(){
 
@@ -61,9 +86,7 @@ angular.module('congkakApp')
                     if (tmp === false){
                         $rootScope.playerTurn = 0;
                         alert ('Player 2 won!!');
-                    }else{
-                        //console.log("1-7 WINNNNNI UPLOADDDDD");
-                        //console.dir($rootScope.boardStatus);
+                        scope.startSecondRound(2);
                     }
 
                     tmp = false;
@@ -77,9 +100,7 @@ angular.module('congkakApp')
                     if (tmp === false){
                         $rootScope.playerTurn = 0;
                         alert ('Player 1 won!!');
-                    }else{
-                        //console.log("8-14WINNNNNI UPLOADDDDD");
-                        //console.dir($rootScope.boardStatus);
+                        scope.startSecondRound(1);
                     }
                 };
 
@@ -103,7 +124,8 @@ angular.module('congkakApp')
                         scope.state = 0;
                         $rootScope.boardStatus[parseInt(scope.id_number)] = 0;
                         scope.checkWinner();
-                    }else if(($rootScope.playerTurn == 2) && (scope.id_number < 8) && (scope.id_number > 0) && (scope.state > 0) && ($rootScope.gameLock == false)){
+                    }else
+                        if(($rootScope.playerTurn == 2) && (scope.id_number < 8) && (scope.id_number > 0) && (scope.state > 0) && ($rootScope.gameLock == false)){
                         $rootScope.gameLock = true;
                         var hand = scope.state;
                         if ((scope.id_number == 1)){
@@ -126,6 +148,23 @@ angular.module('congkakApp')
                     scope.checkWinner();
                 };
 
+
+                $rootScope.$on('initializeSecondRound', function(event,args){
+                    var firstPlayerMaxHouses = parseInt($rootScope.storeHousesState[1]/7);
+                    var secondPlayerMaxHouses = parseInt($rootScope.storeHousesState[2]/7);
+
+                    if ($.inArray(scope.id_number, scope.blockHouses)){
+                        scope.state = 0;
+                    }else{
+                        scope.state = 7;
+                        if (scope.id_number > 7){
+                            $rootScope.storeHousesState[2] = $rootScope.storeHousesState[2] - 7;
+                        }else{
+                            $rootScope.storeHousesState[1] = $rootScope.storeHousesState[1] - 7;
+                        }
+                    }
+
+                });
                 $rootScope.$on('eatDistribute', function(event, args){
                     if (scope.id_number == args.eaten_house){
                         //console.log("IN EAAAAAAAAAAT");
@@ -185,7 +224,7 @@ angular.module('congkakApp')
                                     scope.trigleDistribute(hand);
                                 }
                                 //console.log("after trigle" + hand);
-                            }, 1000);
+                            }, 500);
                         }else if ((hand == 1)) {
                             if( scope.state > 0){
                                 //console.log('1 item in hand');

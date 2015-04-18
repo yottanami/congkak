@@ -116,7 +116,7 @@ body {
 }
 
 .house.two{
-   left:416px;
+   left:415px;
 
 }
 
@@ -185,34 +185,48 @@ body {
    left:20px;
 }
 
-.house.ball {
+.house > .ball {
    position:absolute;
    left:0;
    right:0;
+    -webkit-transition: all 2s 1.5s ease-out;
+    -moz-transition: all 1.5s ease-out;
+    transition: all 1.5s ease-out;
 }
 
-.house.ball.one {
-   left:13px;
+.highlight-enter-setup {
+    background: yellow;
+}
+.highlight-enter-start {
+    background: white;
+}
+
+.house > .ball.ng-hide {
+   opacity: 0;
+}
+
+.house >.ball.one {
+   left:14px;
    top:20px;
 }
 
 
-.house.ball.two {
+.house > .ball.two {
    left:40px;
    top:25px;
 }
 
-.house.ball.three {
+.house > .ball.three {
    left:31px;
    top:0px;
 }
 
-.house.ball.four {
+.house > .ball.four {
    left:20px;
    top:44px;
 }
 
-.house > .ball.five {
+.house >  .ball.five {
    left:-6px;
    top:32px;
 }
@@ -228,21 +242,53 @@ body {
 }
 
 .house > .ball.eight {
-   left:16px;
-   top:10px;
+   left:4px;
+   top:12px;
 }
 
 .house > .ball.nine {
-   left:21px;
-   top:13px;
+   left:20px;
+   top:10px;
 }
 
 .house > .ball.ten {
-   left:20px;
-   top:18px;
+   left:27px;
+   top:24px;
 }
 
 .house > .ball.eleven {
    left:22px;
    top:30px;
+}
+
+.house > .ball.twelve {
+   left:5px;
+   top:30px;
+}
+
+
+.animate-show, .animate-hide {
+  -webkit-transition:all linear 1s;
+  -moz-transition:all linear 1s;
+  -ms-transition:all linear 1s;
+  -o-transition:all linear 1s;
+  transition:all linear 1s;
+
+}
+
+
+.animate-show {
+  opacity:0;
+}
+
+.animate-show.animate-show-active {
+  opacity:1;
+}
+
+.animate-hide {
+  opacity:1;
+}
+
+.animate-hide.animate-hide-active {
+  opacity:0;
 }

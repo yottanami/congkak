@@ -17,11 +17,21 @@ angular.module('congkakApp')
             },
             link: function (scope, element, attrs) {
                 scope.state = scope.state || 0;
+                scope.getRandomInt = function(min, max) {
+                    min = min * 10;
+                    max = max * 10;
+                    return Math.floor(((Math.random() * (max - min + 1)) + min) / 10);
+                };
 
-
+                scope.getTimes = function(n){
+                    return new Array(n);
+                };
                 $rootScope.$on('houseDistribute', function(event, args){
-                    if (args.user == scope.id_number)
+                    if (args.user == scope.id_number){
                         scope.state = scope.state + args.items;
+                        $rootScope.storeHousesState[args.user] = scope.state;
+                    }
+
                 });
 
 
