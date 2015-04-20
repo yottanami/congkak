@@ -35,7 +35,10 @@ angular.module('congkakApp')
 
                 });
 
-
+                $rootScope.$on('updateStoreHouseStates', function(event, args){
+                    scope.state = $rootScope.storeHousesState[scope.id_number];
+                    console.log("update store house");
+                });
             }
         };
     });
