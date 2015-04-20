@@ -26,6 +26,7 @@ angular.module('congkakApp')
                 scope.getTimes = function(n){
                     return new Array(n);
                 };
+
                 $rootScope.$on('houseDistribute', function(event, args){
                     if (args.user == scope.id_number){
                         scope.state = scope.state + args.items;
