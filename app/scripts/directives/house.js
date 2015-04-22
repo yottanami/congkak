@@ -267,8 +267,10 @@ angular.module('congkakApp')
                             if (hand > 1){
                                 hand = hand - 1;
                                 //hconsole.log("** out of timeout " + hand);
-                                scope.state = scope.state + 1;
-                                $rootScope.boardStatus[scopeID] = scope.state;
+                                if ($.inArray(scopeID, $rootScope.blockHouses) === -1){
+                                    scope.state = scope.state + 1;
+                                    $rootScope.boardStatus[scopeID] = scope.state;
+                                }
                                 scope.checkWinner();
 
                                 //console.log("before trigle" + hand);
