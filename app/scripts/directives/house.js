@@ -136,13 +136,9 @@ angular.module('congkakApp')
                         }
 
                         if (round == 1){
-                            if (winnerUser == 1){
-                                winnerAnimation(1);
-                            }else{
-                                winnerAnimation(2);
-                            }
+                            showWinnerAnimation(1);
                         }else{
-                            $location.path('/result/' + winnerUser);
+                            $location.path('/result/' + $rootScope.winnerUser);
                         }
                         scope.startSecondRound(2);
                         return true;
@@ -401,7 +397,7 @@ angular.module('congkakApp')
                             }
 
                             }
-                        }, 80);
+                        }, 40);
                             });
                               }
             };

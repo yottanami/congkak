@@ -5,7 +5,7 @@ function getRandomInt(min, max) {
 }
 
 function changePlayerTurnAnimation(){
-    $('#playerTurnReport').removeClass('animated flip');
+    //$('#playerTurnReport').removeClass('animated flip');
     $('#playerTurnReport').addClass('animated flip');
 }
 
@@ -31,6 +31,6 @@ function showWinnerAnimation(){
 }
 
 function hideWinnerAnimation(){
-        $('#winnerReport').removeClass('animated bounceOutUp zoomInRight');
-        $('#winnerReport').addClass('animated bounceOutUp');
+    $('#winnerReport').removeClass('animated bounceOutUp zoomInRight');
+    $('#winnerReport').addClass('animated bounceOutUp');
 }
