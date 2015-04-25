@@ -7,7 +7,7 @@
  * # storeHouse
  */
 angular.module('congkakApp')
-    .directive('storehouse', function ($rootScope) {
+    .directive('storehouse', function ($rootScope, $timeout) {
         return {
             templateUrl: 'views/storehouse.html',
             restrict: 'E',
@@ -36,8 +36,10 @@ angular.module('congkakApp')
                 });
 
                 $rootScope.$on('updateStoreHouseStates', function(event, args){
-                    scope.state = $rootScope.storeHousesState[scope.id_number];
-                    console.log("update store house");
+                    $timeout(function(){
+                        scope.state = $rootScope.storeHousesState[scope.id_number];
+                        console.log("update store house");
+                    }, 800);
                 });
             }
         };

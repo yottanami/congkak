@@ -10,6 +10,11 @@ body {
   background-image: url("/images/bg.jpg");
 }
 
+h1, h2, h3, h4, h5, h6 {
+   text-align: center;
+}
+
+
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -264,31 +269,4 @@ body {
 .house > .ball.twelve {
    left:5px;
    top:30px;
-}
-
-
-.animate-show, .animate-hide {
-  -webkit-transition:all linear 1s;
-  -moz-transition:all linear 1s;
-  -ms-transition:all linear 1s;
-  -o-transition:all linear 1s;
-  transition:all linear 1s;
-
-}
-
-
-.animate-show {
-  opacity:0;
-}
-
-.animate-show.animate-show-active {
-  opacity:1;
-}
-
-.animate-hide {
-  opacity:1;
-}
-
-.animate-hide.animate-hide-active {
-  opacity:0;
 }
