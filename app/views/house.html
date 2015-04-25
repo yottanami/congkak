@@ -1,11 +1,7 @@
+
 <div
   class="{{numbers[id_number]}} house"
   ng-click="trigleClick(id_number, state)" ng-init="changeState(id_number,7)">
-  <!-- <img
-  class="ball {{numbers[$index+1]}}" src="/images/ball.png"
-  ng-repea="t in getTimes(state) track by $index"
-  > -->
-
   <br>
-  <div>{{state}}</div>
+  <h3 class="state">{{currentState(id_number)}}</h3>
 </div>

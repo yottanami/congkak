@@ -37,7 +37,7 @@ angular.module('congkakApp')
                 ];
 
                 scope.changeState = function(id, state){
-                    $('.house.' + scope.numbers[id]).empty();
+                    $('.house.' + scope.numbers[id]).find('.ball').remove();
                     for(var i=1;i<=state;i++){
 
                         $('.house.' + scope.numbers[id]).append(

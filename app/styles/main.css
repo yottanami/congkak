@@ -93,8 +93,8 @@ h1, h2, h3, h4, h5, h6 {
 .board {
    background-image: url("/images/board.png");
    background-repeat: no-repeat;
-   height:216px;
-   width:810px;
+   height:300px;
+   width:808px;
    position: relative;
 }
 
@@ -103,11 +103,20 @@ h1, h2, h3, h4, h5, h6 {
    width: 570px;
    height:57px;
    left:130px;
-   top:47px;
+   top:96px;
 }
 
 .houses.player1 {
-   top:126px;
+   top:175px;
+}
+
+.houses.player1 > .house > .state{
+   position: absolute;
+   z-index:999;
+   top:50px;
+   left:20px;
+   background-color :#cdcdcd;
+
 }
 
 .house {
@@ -127,44 +136,44 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .house.three{
-   left:334px;
+   left:332px;
 
 }
 
 .house.four{
-   left:250px;
+   left:252px;
 }
 
 .house.five{
-   left:165px;
+   left:171px;
 }
 
 .house.six{
-   left:80px;
+   left:90px;
 }
 
 .house.seven{
-   left: 2px;
+   left: 8px;
 }
 
 .house.eight{
-   left: 2px;
+   left: 8px;
 }
 
 .house.nine{
-   left:80px;
+   left:89px;
 }
 
 .house.ten{
-   left:165px;
+   left:171px;
 }
 
 .house.eleven{
-   left:250px;
+   left:252px;
 }
 
 .house.twelve{
-   left:330px;
+   left:333px;
 }
 
 .house.thirteen{
@@ -180,7 +189,7 @@ h1, h2, h3, h4, h5, h6 {
    position: absolute;
    width:80px;
    height:80px;
-   top:70px;
+   top:117px;
 }
 
 .storehouse.player2{
@@ -212,7 +221,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .house >.ball.one {
-   left:14px;
+   left:15px;
    top:20px;
 }
 
@@ -223,22 +232,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .house > .ball.three {
-   left:31px;
-   top:0px;
+   left:33px;
+   top:1px;
 }
 
 .house > .ball.four {
-   left:20px;
-   top:44px;
+   left:21px;
+   top:41px;
 }
 
 .house >  .ball.five {
-   left:-6px;
+   left:-3px;
    top:32px;
 }
 
 .house >.ball.six {
-   left:-11px;
+   left:-6px;
    top:7px;
 }
 
