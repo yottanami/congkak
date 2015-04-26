@@ -110,14 +110,22 @@ h1, h2, h3, h4, h5, h6 {
    top:175px;
 }
 
-.houses.player1 > .house > .state{
+.state{
    position: absolute;
    z-index:999;
-   top:50px;
-   left:20px;
-   background-color :#cdcdcd;
-
+   color: #777777;
 }
+
+.houses.player1 > .house > .state{
+   top:60px;
+   left:20px;
+}
+
+.houses.player2 > .house > .state{
+   top:-45px;
+   left:20px;
+}
+
 
 .house {
    position: absolute;
@@ -190,6 +198,7 @@ h1, h2, h3, h4, h5, h6 {
    width:80px;
    height:80px;
    top:117px;
+   color:#555555;
 }
 
 .storehouse.player2{
@@ -221,8 +230,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .house >.ball.one {
-   left:15px;
-   top:20px;
+   left:16px;
+   top:18px;
 }
 
 
@@ -252,7 +261,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .house > .ball.seven {
-   left: 9px;
+   left: 12px;
    top: -7px;
 }
 

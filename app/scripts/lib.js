@@ -1,3 +1,5 @@
+'use strict';
+
 function getRandomInt(min, max) {
     min = min * 10;
     max = max * 10;
