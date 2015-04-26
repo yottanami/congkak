@@ -49,7 +49,6 @@ angular.module('congkakApp')
                 };
 
                 scope.currentState = function(id){
-                    console.log($('.house.' + scope.numbers[id] + '>.ball'));
                     return $('.house.' + scope.numbers[id] + '>.ball').length;
                 };
 

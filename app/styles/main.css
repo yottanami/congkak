@@ -14,7 +14,9 @@ h1, h2, h3, h4, h5, h6 {
    text-align: center;
 }
 
-
+.row {
+   margin: 0 !important
+}
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
