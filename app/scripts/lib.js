@@ -7,8 +7,10 @@ function getRandomInt(min, max) {
 }
 
 function changePlayerTurnAnimation(){
-    //$('#playerTurnReport').removeClass('animated flip');
-    $('#playerTurnReport').addClass('animated flip');
+    $('#playerTurnReport').removeClass('animated flip');
+    setTimeout(function() {
+        $('#playerTurnReport').addClass('animated flip');
+    }, 700);
 }
 
 function initializeGameAnimation (){
