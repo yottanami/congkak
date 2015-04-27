@@ -37,16 +37,18 @@ angular.module('congkakApp')
                 ];
 
                 scope.changeState = function(id, state){
-                    $('.house.' + scope.numbers[id]).find('.ball').remove();
-                    for(var i=1;i<=state;i++){
+                    if ($.inArray(scopeID, $rootScope.blockHouses) === -1){
+                        $('.house.' + scope.numbers[id]).find('.ball').remove();
+                        for(var i=1;i<=state;i++){
 
-                        $('.house.' + scope.numbers[id]).append(
-                            '<img src="/images/ball.png" class="ball ' +
-                                scope.numbers[i] + '">'
-                        );
+                            $('.house.' + scope.numbers[id]).append(
+                                '<img src="/images/ball.png" class="ball ' +
+                                    scope.numbers[i] + '">'
+                            );
+                        }
+                        $rootScope.boardStatus[id] = state;
+                        scope.checkWinner();
                     }
-                    $rootScope.boardStatus[id] = state;
-                    scope.checkWinner();
 
                 };
 
@@ -130,7 +132,7 @@ angular.module('congkakApp')
                 scope.checkWinner = function(){
                     //console.log("winner checked" + scope.checkBoardEmpty(1) + scope.checkBoardEmpty(2));
 
-                    if ((scope.checkBoardEmpty(1) == true) && (scope.checkBoardEmpty(2) == true)){
+                    if ((scope.checkBoardEmpty(1) === true) && (scope.checkBoardEmpty(2) == true)){
                         if ($rootScope.storeHousesState[1] > $rootScope.storeHousesState[2]){
                             $rootScope.winnerUser = 1;
                         }else{
@@ -152,7 +154,7 @@ angular.module('congkakApp')
                 scope.trigleClick = function(){
                    // console.log("Player Turn : " + $rootScope.playerTurn);
                    // console.log(scope.currentState(scopeID));
-                    if (($rootScope.playerTurn == 1) && (scopeID < 15) && (scopeID > 7) && (scope.currentState(scopeID) > 0) && ($rootScope.gameLock == false)){
+                    if (($rootScope.playerTurn == 1) && (scopeID < 15) && (scopeID > 7) && (scope.currentState(scopeID) > 0) && ($rootScope.gameLock == false) && ( $rootScope.blockHouses) !== -1){
 
                         $rootScope.gameLock = true;
                         //var hand = scope.state;
@@ -187,8 +189,7 @@ angular.module('congkakApp')
                         //scope.checkWinner();
 
                     }else
-                        if(($rootScope.playerTurn == 2) && (scopeID < 8) && (scopeID > 0) && (scope.currentState(scopeID) > 0) && ($rootScope.gameLock == false)){
-
+                        if(($rootScope.playerTurn == 2) && (scopeID < 8) && (scopeID > 0) && (scope.currentState(scopeID) > 0) && ($rootScope.gameLock == false)&& ($.inArray(scopeID, $rootScope.blockHouses) === -1)){
                             $rootScope.gameLock = true;
                             //var hand = scope.state;
                             var hand = scope.currentState(scopeID);
@@ -196,7 +197,7 @@ angular.module('congkakApp')
                                 $rootScope.$broadcast('houseDistribute', {user: 2, items: 1});
                                 hand = hand - 1;
 
-                                scope.changeState(scopeID, scope.currentState(scopeID));
+                                //scope.changeState(scopeID, hand);
                                 if (scope.checkBoardEmpty(2)){
                                     $rootScope.playerTurn = 1;
                                     $rootScope.gameLock = false;
@@ -335,7 +336,7 @@ angular.module('congkakApp')
 
 
                                     //console.log("daaakheelee householde"+hand);
-                                }else if((idnumber == 1) && (hand > 0) && (scopeID == 2) && ($rootScope.playerTurn == 2) &&  ($.inArray(scopeID, $rootScope.blockHouses) === -1)){
+                                }else if((idnumber == 2) && (hand > 0) && (scopeID == 1) && ($rootScope.playerTurn == 2) &&  ($.inArray(scopeID, $rootScope.blockHouses) === -1)){
                                     //console.log("hhhhhhhhooooouuuuuuusssssseeeeeeee1");
                                     $rootScope.$broadcast('houseDistribute', {user: 2, items: 1});
                                     hand = hand - 1;
@@ -362,8 +363,8 @@ angular.module('congkakApp')
                                 }
 
                                 //}, 10);
-                            }else if ((hand == 1)){
-                                if( scope.currentState(scopeID) > 0){
+                            }else if ((hand == 1) && ( $rootScope.blockHouses) !== -1){
+                                if(( scope.currentState(scopeID) > 0)){
                                     //console.log('1 item in hand');
                                     scope.trigleDistribute(scope.currentState(scopeID) + hand);
                                     //scope.state = 0;
