@@ -6,6 +6,7 @@
  * @description
  * # storeHouse
  */
+
 angular.module('congkakApp')
     .directive('storehouse', function ($rootScope, $timeout) {
         return {
@@ -17,24 +18,19 @@ angular.module('congkakApp')
             },
             link: function (scope, element, attrs) {
                 scope.state = scope.state || 0;
-                scope.getRandomInt = function(min, max) {
-                    min = min * 10;
-                    max = max * 10;
-                    return Math.floor(((Math.random() * (max - min + 1)) + min) / 10);
-                };
-
                 scope.getTimes = function(n){
                     return new Array(n);
                 };
 
+                // Store house update distribute
                 $rootScope.$on('houseDistribute', function(event, args){
                     if (args.user == scope.id_number){
                         scope.state = scope.state + args.items;
                         $rootScope.storeHousesState[args.user] = scope.state;
                     }
-
                 });
 
+                // Update the store house state
                 $rootScope.$on('updateStoreHouseStates', function(event, args){
                     $timeout(function(){
                         scope.state = $rootScope.storeHousesState[scope.id_number];

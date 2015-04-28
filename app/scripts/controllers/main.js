@@ -9,5 +9,5 @@
  */
 angular.module('congkakApp')
   .controller('MainCtrl', function ($scope) {
-_____
+
   });
