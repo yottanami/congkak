@@ -2,12 +2,13 @@
 
 /**
  * @ngdoc function
- * @name congkakApp.controller:MainCtrl
+ * @name congkakApp.controller:ResultCtrl
  * @description
- * # MainCtrl
+ * # ResultCtrl
  * Controller of the congkakApp
  */
 angular.module('congkakApp')
-  .controller('MainCtrl', function ($scope) {
-_____
+  .controller('ResultCtrl', function ($scope, $rootScope) {
+
+
   });

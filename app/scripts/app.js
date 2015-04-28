@@ -27,9 +27,9 @@ angular
         templateUrl: 'views/play.html',
         controller: 'PlayCtrl'
       })
-      .when('/result',{
+      .when('/result/:winner',{
         templateUrl: 'views/result.html',
-        controller: 'PlayCtrl'
+        controller: 'ResultCtrl'
       })
 
       .otherwise({
