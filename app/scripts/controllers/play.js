@@ -10,6 +10,7 @@
 angular.module('congkakApp')
   .controller('PlayCtrl', function ($scope, $rootScope) {
       $scope.initializeGame = function(){
+          $route.reload();
           $rootScope.playerTurn = 1;
           $rootScope.boardStatus = [-1,7,7,7,7,7,7,7,7,7,7,7,7,7,7];
           $rootScope.winnerUser = 0;

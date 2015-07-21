@@ -31,7 +31,6 @@ angular
         templateUrl: 'views/result.html',
         controller: 'ResultCtrl'
       })
-
       .otherwise({
         redirectTo: '/'
       });
